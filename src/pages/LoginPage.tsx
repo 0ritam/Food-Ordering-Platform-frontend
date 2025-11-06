@@ -66,7 +66,7 @@ const LoginPage: React.FC = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-gradient-to-r from-primary-dark to-orange text-white py-3 rounded-lg font-semibold hover:from-gray-800 hover:to-gray-900 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-gradient-to-r from-primary-light to-orange text-white py-3 rounded-lg font-semibold hover:from-gray-800 hover:to-gray-900 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? 'Logging in...' : 'Login'}
         </button>
