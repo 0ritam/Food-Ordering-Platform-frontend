@@ -75,45 +75,96 @@ const HomePage: React.FC = () => {
 
   // 7. Create the JSX
   return (
-    <div className="container mx-auto p-4 sm:p-6 lg:p-8 min-h-screen">
-      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center my-6 sm:my-8 text-primary-dark">Our Menu</h1>
-      
-      {/* Show login prompt if user is not authenticated */}
+    <>
+      {/* Show split landing page if user is not authenticated */}
       {!user ? (
-        <div className="max-w-2xl mx-auto mt-8 sm:mt-16 text-center px-4">
-          <div className="bg-white rounded-xl shadow-2xl p-8 sm:p-12 border-t-4 border-orange">
-            <div className="text-5xl sm:text-6xl mb-6">🍔🍕🍰</div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-primary-dark mb-4">
-              Welcome to FoodOrder!
-            </h2>
-            <p className="text-gray-700 text-base sm:text-lg mb-8">
-              Please log in or register to view our delicious menu and start ordering.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/login"
-                className="bg-gradient-to-r from-primary-dark to-orange text-white px-8 py-3 rounded-lg font-semibold hover:from-gray-800 hover:to-gray-900 transition-all shadow-lg"
-              >
-                Login
-              </Link>
-              <Link
-                to="/register"
-                className="bg-white text-primary-dark border-2 border-orange px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 hover:text-white hover:border-gray-800 transition-all"
-              >
-                Register
-              </Link>
+        <div className="min-h-screen flex flex-col lg:flex-row">
+          {/* Left Half - App Information */}
+          <div className="lg:w-1/2 bg-gradient-to-br from-primary-dark via-orange to-orange-light flex items-center justify-center p-8 sm:p-12 lg:p-16">
+            <div className="max-w-xl text-white">
+              <div className="text-6xl sm:text-7xl lg:text-8xl mb-8 animate-bounce">🍔</div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 drop-shadow-lg">
+                Welcome to OrderFood
+              </h1>
+              <p className="text-lg sm:text-xl lg:text-2xl mb-8 text-white/90 leading-relaxed">
+                Delicious food delivered right to your doorstep! 
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <span className="text-3xl">✨</span>
+                  <p className="text-lg">Fresh ingredients & quality food</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <span className="text-3xl">🚀</span>
+                  <p className="text-lg">Fast & reliable delivery</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <span className="text-3xl">💯</span>
+                  <p className="text-lg">100% satisfaction guaranteed</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Half - Login/Register Box */}
+          <div className="lg:w-1/2 bg-gradient-to-br from-orange-50 via-white to-orange-50 flex items-center justify-center p-8 sm:p-12 lg:p-16">
+            <div className="w-full max-w-md">
+              <div className="bg-white rounded-2xl shadow-2xl p-8 sm:p-10 border-t-4 border-orange">
+                <div className="text-center mb-8">
+                  <div className="text-5xl sm:text-6xl mb-4">🍰🥗</div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-primary-dark mb-2">
+                    Get Started
+                  </h2>
+                  <p className="text-gray-600 text-sm sm:text-base">
+                    Login or create an account to start ordering
+                  </p>
+                </div>
+                
+                <div className="space-y-4">
+                  <Link
+                    to="/login"
+                    className="w-full block text-center bg-gradient-to-r from-primary-light to-orange text-white px-8 py-4 rounded-lg font-semibold hover:from-gray-800 hover:to-gray-900 transition-all shadow-lg text-lg"
+                  >
+                    Login to Your Account
+                  </Link>
+                  
+                  <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                      <div className="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div className="relative flex justify-center text-sm">
+                      <span className="px-4 bg-white text-gray-500">or</span>
+                    </div>
+                  </div>
+                  
+                  <Link
+                    to="/register"
+                    className="w-full block text-center bg-white text-primary-dark border-2 border-orange px-8 py-4 rounded-lg font-semibold hover:bg-orange hover:text-white hover:border-orange transition-all shadow text-lg"
+                  >
+                    Create New Account
+                  </Link>
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-gray-200 text-center">
+                  <p className="text-gray-600 text-sm">
+                    🎉 Special offers for new members!
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       ) : (
-        <>
+        <div className="container mx-auto p-4 sm:p-6 lg:p-8 min-h-screen">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center my-6 sm:my-8 text-primary-dark">Our Menu</h1>
+          
           {/* 8. Category Filter Buttons */}
           <div className="flex justify-center flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8 px-2">
             <button
               onClick={() => handleCategoryChange('All')}
               className={`px-4 sm:px-6 py-2 rounded-full font-semibold transition-all text-sm sm:text-base ${
                 selectedCategory === 'All' 
-                  ? 'bg-gradient-to-r from-primary-dark to-orange text-black shadow-lg transform scale-105' 
+                  ? 'bg-gradient-to-r from-primary-dark to-orange text-white shadow-lg transform scale-105' 
                   : 'bg-white text-primary-dark border-2 border-orange hover:bg-gray-800 hover:text-white hover:border-gray-800'
               }`}
             >
@@ -125,7 +176,7 @@ const HomePage: React.FC = () => {
                 onClick={() => handleCategoryChange(category.name)}
                 className={`px-4 sm:px-6 py-2 rounded-full font-semibold transition-all text-sm sm:text-base ${
                   selectedCategory === category.name 
-                    ? 'bg-gradient-to-r from-primary-light to-orange text-white shadow-lg transform scale-105' 
+                    ? 'bg-gradient-to-r from-primary-dark to-orange text-white shadow-lg transform scale-105' 
                     : 'bg-white text-primary-dark border-2 border-orange hover:bg-gray-800 hover:text-white hover:border-gray-800'
                 }`}
               >
@@ -147,9 +198,9 @@ const HomePage: React.FC = () => {
               ))}
             </div>
           )}
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
