@@ -1,73 +1,154 @@
-# React + TypeScript + Vite
+# Food Ordering Platform - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript frontend for ordering food with cart management and order tracking.
 
-Currently, two official plugins are available:
+## What's Inside
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Authentication (login/register)
+- Browse food items by category
+- Shopping cart with checkout
+- Order history
+- Mobile responsive design
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 18 + TypeScript
+- Vite (build tool)
+- React Router (navigation)
+- Tailwind CSS (styling)
+- Axios (API calls)
+- react-hot-toast (notifications)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js (v18+)
+- Backend API running on `http://localhost:8080`
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Install dependencies:
+```bash
+cd client
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Create `.env` file:
+```env
+VITE_API_URL=http://localhost:8080/api
 ```
+
+3. Start dev server:
+```bash
+npm run dev
+```
+
+App runs on `http://localhost:5173`
+
+## Available Scripts
+
+```bash
+npm run dev       # Start dev server
+npm run build     # Build for production
+npm run preview   # Preview production build
+npm run lint      # Check code quality
+```
+
+## Project Structure
+
+```
+client/
+├── src/
+│   ├── components/
+│   │   └── NavBar.tsx       # Navigation with mobile menu
+│   ├── pages/
+│   │   ├── HomePage.tsx     # Landing + item list
+│   │   ├── LoginPage.tsx    # Login form
+│   │   ├── RegisterPage.tsx # Register form
+│   │   ├── CartPage.tsx     # Cart & checkout
+│   │   └── OrderHistoryPage.tsx # Past orders
+│   ├── context/
+│   │   └── AuthContext.tsx  # Auth state management
+│   ├── App.tsx              # Routes
+│   ├── main.tsx             # Entry point
+│   └── index.css            # Tailwind styles
+└── package.json
+```
+
+## Features
+
+### Authentication
+- JWT token stored in localStorage
+- Protected routes redirect to login
+- Auto-logout on token expiration
+
+### Cart Management
+- Add items with quantity
+- View cart total
+- Checkout creates order
+
+### Responsive Design
+- Mobile: Hamburger menu, stacked layout
+- Desktop: Full navigation, grid layout
+- Breakpoints: sm (640px), md (768px), lg (1024px)
+
+### Landing Page
+- Split-screen design
+- Left: App info with features
+- Right: Login/Register buttons
+- Shows item grid when logged in
+
+## Custom Colors
+
+```css
+--primary-dark: #AD4728
+--orange: #FD9139
+--orange-light: #FCA65E
+```
+
+## API Integration
+
+All API calls go through axios with base URL from `.env`:
+
+```typescript
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+```
+
+Auth token automatically added to requests via AuthContext.
+
+## Building for Production
+
+```bash
+npm run build
+```
+
+Creates optimized build in `dist/` folder.
+
+Deploy to Vercel:
+```bash
+npm i -g vercel
+vercel
+```
+
+Set environment variable in Vercel:
+- `VITE_API_URL` = your production API URL
+
+## Common Issues
+
+**API calls fail?**
+- Check backend is running on port 8080
+- Verify `VITE_API_URL` in `.env`
+
+**Toast notifications not showing?**
+- Check react-hot-toast is installed
+- Toaster component is in `main.tsx`
+
+**Styles not applying?**
+- Run `npm install` to ensure Tailwind is installed
+- Check `tailwind.config.js` exists
+
+**Build errors?**
+- Delete `node_modules` and `package-lock.json`
+- Run `npm install` again
+
