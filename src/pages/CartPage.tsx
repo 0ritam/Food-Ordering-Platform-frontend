@@ -130,7 +130,7 @@ const CartPage: React.FC = () => {
           </span>
           <button
             onClick={handleCheckout}
-            className="w-full sm:w-auto bg-gradient-to-r from-primary-dark to-orange text-white px-6 sm:px-8 py-3 rounded-lg text-base sm:text-lg font-semibold hover:from-gray-800 hover:to-gray-900 transition-all shadow-lg"
+            className="w-full sm:w-auto bg-gradient-to-r from-primary-light to-orange text-white px-6 sm:px-8 py-3 rounded-lg text-base sm:text-lg font-semibold hover:from-gray-800 hover:to-gray-900 transition-all shadow-lg"
           >
             💳 Pay and Proceed
           </button>

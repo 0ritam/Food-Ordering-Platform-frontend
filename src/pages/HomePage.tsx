@@ -164,7 +164,7 @@ const HomePage: React.FC = () => {
               onClick={() => handleCategoryChange('All')}
               className={`px-4 sm:px-6 py-2 rounded-full font-semibold transition-all text-sm sm:text-base ${
                 selectedCategory === 'All' 
-                  ? 'bg-gradient-to-r from-primary-dark to-orange text-white shadow-lg transform scale-105' 
+                  ? 'bg-gradient-to-r from-primary-dark to-orange text-black shadow-lg transform scale-105' 
                   : 'bg-white text-primary-dark border-2 border-orange hover:bg-gray-800 hover:text-white hover:border-gray-800'
               }`}
             >
@@ -176,7 +176,7 @@ const HomePage: React.FC = () => {
                 onClick={() => handleCategoryChange(category.name)}
                 className={`px-4 sm:px-6 py-2 rounded-full font-semibold transition-all text-sm sm:text-base ${
                   selectedCategory === category.name 
-                    ? 'bg-gradient-to-r from-primary-dark to-orange text-white shadow-lg transform scale-105' 
+                    ? 'bg-gradient-to-r from-primary-dark to-orange text-black shadow-lg transform scale-105' 
                     : 'bg-white text-primary-dark border-2 border-orange hover:bg-gray-800 hover:text-white hover:border-gray-800'
                 }`}
               >
